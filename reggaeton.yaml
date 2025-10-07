@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: flow-urbano-sebastian
+  namespace: reggaeton
+  annotations:
+    student-name: "Sebastián Saldaña"
+    favorite-music: "Reggaeton"
+    favorite-song: "Nosotros"
+    favorite-artist: "Anuel AA"
+spec:
+  containers:
+  - name: reggaetonero
+    image: nginx
+  tolerations:
+  - key: "music"
+    operator: "Equal"
+    value: "perreo-intenso"
+    effect: "NoSchedule"
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: style
+            operator: In
+            values:
+              - urbano
